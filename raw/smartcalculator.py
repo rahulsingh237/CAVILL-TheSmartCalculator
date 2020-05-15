@@ -1,8 +1,3 @@
-from speak import male
-
-from speech import rect
-
-
 # responses that calculator will give 
 response=['Welcome to smart calculator','My name is Cavill', 
 		'I am glad that I was able to help you','Sorry ,this is beyond my ability'] 
@@ -56,21 +51,14 @@ def mod(a,b):
 # Response to command 
 # printing - "I am glad that I was able to help you" on exit 
 def end(): 
-	male('I am glad that I was able to help you')
-	print(response[2])
-	input('press enter key to exit.')
-	male('press enter key to exit.')
-
+	print(response[2]) 
+	input('press enter key to exit. ') 
 	exit() 
 
 def myname(): 
-	
-	print(response[1])
-	male('My name is Cavill')
+	print(response[1]) 
 def sorry(): 
-	
-	print(response[3])
-	male('Sorry ,this is beyond my ability')
+	print(response[3]) 
 
 # Operations - performed on the basis of text tokens 
 operations={'ADD':add,
@@ -86,55 +74,51 @@ operations={'ADD':add,
 			'PRODUCT':mul, 
             'MULTIPLY':mul,
             'MULTIPLICATION':mul, 
-			'DIVIDE':div,
 			'DIVISION':div,
+			'DIVIDE':div,
             'MOD':mod,
             'REMANDER':mod,
             'MODULAS':mod} 
-
+##operations1={'add':['ADD','PLUS','SUM','ADDITION'],
 
 # commands 
-commands={'NAME':myname,'EXIT':end,'QUIT':end,'END':end,'CLOSE':end} 
+commands={'NAME':myname,'EXIT':end,'END':end,'CLOSE':end} 
 		
 print('--------------'+response[0]+'------------') 
-male('Welcome to smart calculator')
 print('--------------'+response[1]+'--------------------') 
-male('My name is Cavill')
 
 
 while True: 
-	print('enter your queries: ')
-	male('enter your queries:') 
-	text=rect()
-	
-
-	r=0
+	print() 
+	text=input('enter your queries: ') 
 	for word in text.split(' '): 
 		if word.upper() in operations.keys(): 
 			try: 
-				l = operations_from_text(text)
+				l = operations_from_text(text) 
 				q = str(operations[word.upper()].__name__)
-				if q == 'mul':
-					r=1
+				if q == 'add':
+					r=0
 					for i in range(len(l)):
 						r = operations[word.upper()] (r,l[i]) 
-				elif q == 'add':
-					for i in range(len(l)):
-						r = operations[word.upper()] (r,l[i]) 
-				elif q == 'div' or 'lcm' or 'hcf' or 'sub':	
+					print(r) 
+				elif q == 'sub':
 					r=float(l[0])
 					for i in range(1,len(l)):
 						r = operations[word.upper()] (r,l[i])
-				elif q == 'mod':
-					r = operations[word.upper()] (l[0],l[1])
-				print(r)
-
-				male(r)						
-				 
-				r=0
+					print(r)
+				elif q == 'mul':
+					r=1
+					for i in range(len(l)):
+						r = operations[word.upper()] (r,l[i]) 
+					print(r)
+				elif q == 'div':
+					r=float(l[0])
+					for i in range(1,len(l)):
+						r = operations[word.upper()] (r,l[i])
+					print(r)
+				
 			except: 
-				print('something went wrong going please enter again !!') 
-				male('something went wrong going please enter again !!')
+				print('something went wrong going back please enter again !!') 
 			finally: 
 					break
 		elif word.upper() in commands.keys(): 
