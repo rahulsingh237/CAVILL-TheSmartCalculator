@@ -12,7 +12,7 @@ root.minsize(479,350)
 root.maxsize(479,350)
 
 # Title
-root.title("SmartCalculator")
+root.title("CAVILL - TheSmartCalculator")
 
 
 
